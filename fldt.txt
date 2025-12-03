@@ -1,0 +1,6 @@
+elso lepes készítsen a csapat bootstrap segitsegevel egy egyszeru designt amibe van navigacio
+3 gombos nav bar
+2. lepes elso gombra egy olyan urlapot kell kesziteni ami a pitagorasz segitsegevel kiszamolja az adatot megadja hogy haromszog-e 
+3. lepes masodik gombra szogfuggvenyes haromszog oldalai es szogei kiszamolasa helyesek e (megvan e adva minden adat)
+4.lepes harmadik gomb elso es masodoku fuggvenyek alkalmazasa meg kell jeleniteni (canvas)
+5.lepes negyedik gomb sorozatok 
