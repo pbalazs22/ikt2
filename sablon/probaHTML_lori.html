@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szögfüggvények feladat</title>
+</head>
+<body>
+    <div id="megjelenit"></div>
+
+
+
+    <button onclick="szogfuggvenyekBetolt()">Betölt</button>
+
+    <script>
+        function szogfuggvenyekBetolt()
+        {
+            const megjelenit = document.getElementById("megjelenit");
+
+            const azonositok = [{adat:"a",szoveg:"a oldal"},{adat:"b",szoveg:"b oldal"},{adat:"c",szoveg:"c oldal"},{adat:"alfa",szoveg:"Alfa szög"},
+            {adat:"beta",szoveg:"Béta szög"},{adat:"gamma",szoveg:"Gamma szög"}];
+
+            
+            let kep = document.createElement("img")
+            kep.src = "harom.png"
+            kep.style.width = "30%"
+            kep.style.height = "30%"
+            megjelenit.appendChild(kep)
+
+            let sortor = document.createElement("br")
+            megjelenit.appendChild(sortor)
+
+            azonositok.forEach(e => {
+                let input = document.createElement("input")
+                input.id = e.adat;
+                input.placeholder = e.szoveg;
+                megjelenit.appendChild(input)
+                let sortor = document.createElement("br")
+                megjelenit.appendChild(sortor)
+            })
+
+            const gomb = document.createElement("button");
+            gomb.click = szogfuggvenyek();
+            gomb.innerHTML = "Kiszámol"
+            megjelenit.appendChild(gomb);
+        }
+
+        function szogfuggvenyek()
+        {
+            const szam = document.getElementById("a").value
+            console.log(szam)
+        }
+
+
+    </script>
+</body>
+</html>
