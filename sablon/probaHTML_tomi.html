@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitagyros-tétel</title>
+    <style>
+        button
+        {
+            margin: 50px;
+            background-color: chartreuse;
+            font-size: 50px;
+        }
+
+        input
+        {
+            font-size: 30px;
+            margin: 20px;
+            height: 50px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="megjelenit"></div>
+
+    <input type="number" id="a" placeholder="a oldal"><br>
+    <input type="number" id="b" placeholder="b oldal"><br>
+    <input type="number" id="c" placeholder="c oldal"><br>
+
+    <button onclick="Gyros()">Számolj!</button>
+
+    <script>
+        //Pitagyros-tétel
+
+        function Gyros()
+        {
+            const a = document.getElementById("a").value
+            const b = document.getElementById("b").value
+            const c = document.getElementById("c").value
+            const osszeg = parseInt(a) + parseInt(b) + parseInt(c);
+            //document.getElementById("megjelenit").innerHTML = "A háromszög kerülete: " + osszeg;
+            //Vizsgálat, hogy derékszögű-e a háromszög
+            if(c*c == a*a + b*b)
+            {
+                document.getElementById("megjelenit").innerHTML = "<br>Ez a háromszög derékszögű.";
+            }
+            else
+            {
+                document.getElementById("megjelenit").innerHTML = "<br>Ez a háromszög nem derékszögű.";
+            }
+        }
+    </script>
+</body>
+</html>
