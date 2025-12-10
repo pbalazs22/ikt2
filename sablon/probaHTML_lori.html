@@ -25,9 +25,9 @@
 
             
             let kep = document.createElement("img")
-            kep.src = "harom.png"
-            kep.style.width = "30%"
-            kep.style.height = "30%"
+            kep.src = "Pitagorasz_4.jpg"
+            kep.style.width = "20%"
+            kep.style.height = "20%"
             megjelenit.appendChild(kep)
 
             let sortor = document.createElement("br")
@@ -46,11 +46,17 @@
             gomb.onclick = szogfuggvenyek;
             gomb.innerHTML = "Kiszámol"
             megjelenit.appendChild(gomb);
+
+            const span = document.createElement("span");
+            span.id = "valasz"
+            megjelenit.appendChild(span);
+
         }
 
         function szogfuggvenyek()
         {
-            console.log("Hello!")
+            //console.log("Hello!")
+
             const a = document.getElementById("a").value
             const b = document.getElementById("b").value
             const c = document.getElementById("c").value
@@ -58,19 +64,16 @@
             const beta = document.getElementById("beta").value
             const gamma = document.getElementById("gamma").value
 
-            haromszog.push({oldal:"a",ertek:parseInt(a)});
-            haromszog.push({oldal:"b",ertek:parseInt(b)});
-            haromszog.push({oldal:"c",ertek:parseInt(c)});
-            haromszog.push({oldal:"alfa",ertek:parseInt(alfa)});
-            haromszog.push({oldal:"beta",ertek:parseInt(beta)});
-            haromszog.push({oldal:"gamma",ertek:parseInt(gamma)});
+            haromszog.push(parseInt(a));
+            haromszog.push(parseInt(b));
+            haromszog.push(parseInt(c));
+            haromszog.push(parseInt(alfa));
+            haromszog.push(parseInt(beta));
+            haromszog.push(parseInt(gamma));
             
-            haromszog.forEach(e=> {
-                if(e.ertek == NaN)
-                {
-                    console.log(e)
-                }
-            })
+            
+            
+
 
             
         }
