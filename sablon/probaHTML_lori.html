@@ -13,6 +13,9 @@
     <button onclick="szogfuggvenyekBetolt()">Betölt</button>
 
     <script>
+
+        let haromszog = [];
+
         function szogfuggvenyekBetolt()
         {
             const megjelenit = document.getElementById("megjelenit");
@@ -40,15 +43,36 @@
             })
 
             const gomb = document.createElement("button");
-            gomb.click = szogfuggvenyek();
+            gomb.onclick = szogfuggvenyek;
             gomb.innerHTML = "Kiszámol"
             megjelenit.appendChild(gomb);
         }
 
         function szogfuggvenyek()
         {
-            const szam = document.getElementById("a").value
-            console.log(szam)
+            console.log("Hello!")
+            const a = document.getElementById("a").value
+            const b = document.getElementById("b").value
+            const c = document.getElementById("c").value
+            const alfa = document.getElementById("alfa").value
+            const beta = document.getElementById("beta").value
+            const gamma = document.getElementById("gamma").value
+
+            haromszog.push({oldal:"a",ertek:parseInt(a)});
+            haromszog.push({oldal:"b",ertek:parseInt(b)});
+            haromszog.push({oldal:"c",ertek:parseInt(c)});
+            haromszog.push({oldal:"alfa",ertek:parseInt(alfa)});
+            haromszog.push({oldal:"beta",ertek:parseInt(beta)});
+            haromszog.push({oldal:"gamma",ertek:parseInt(gamma)});
+            
+            haromszog.forEach(e=> {
+                if(e.ertek == NaN)
+                {
+                    console.log(e)
+                }
+            })
+
+            
         }
 
 
