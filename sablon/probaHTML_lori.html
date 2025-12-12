@@ -19,13 +19,14 @@
         function szogfuggvenyekBetolt()
         {
             const megjelenit = document.getElementById("megjelenit");
+            megjelenit.innerHTML = "";
 
             const azonositok = [{adat:"a",szoveg:"a oldal"},{adat:"b",szoveg:"b oldal"},{adat:"c",szoveg:"c oldal"},{adat:"alfa",szoveg:"Alfa szög"},
             {adat:"beta",szoveg:"Béta szög"},{adat:"gamma",szoveg:"Gamma szög"}];
 
             
             let kep = document.createElement("img")
-            kep.src = "Pitagorasz_4.jpg"
+            kep.src = "harom.png"
             kep.style.width = "20%"
             kep.style.height = "20%"
             megjelenit.appendChild(kep)
@@ -47,6 +48,9 @@
             gomb.innerHTML = "Kiszámol"
             megjelenit.appendChild(gomb);
 
+            sortor = document.createElement("br")
+            megjelenit.appendChild(sortor)
+
             const span = document.createElement("span");
             span.id = "valasz"
             megjelenit.appendChild(span);
@@ -55,8 +59,9 @@
 
         function szogfuggvenyek()
         {
-            //console.log("Hello!")
-
+            const valasz = document.getElementById("valasz")
+            valasz.innerHTML = ""
+            haromszog = [];
             const a = document.getElementById("a").value
             const b = document.getElementById("b").value
             const c = document.getElementById("c").value
@@ -71,12 +76,26 @@
             haromszog.push(parseInt(beta));
             haromszog.push(parseInt(gamma));
             
+            console.log(haromszog)
+
+            if(haromszog.every(e => isNaN(e)))
+            {
+                valasz.innerHTML = "Nem számolható ki adat!"
+            }
+
+            if(haromszog.filter(e => isNaN(e)).length == 5)
+            {
+                valasz.innerHTML = "Nem számolható ki adat!"
+            }
             
+
             
 
 
             
         }
+
+        
 
 
     </script>
