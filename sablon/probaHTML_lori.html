@@ -59,6 +59,7 @@
 
         function szogfuggvenyek()
         {
+            let lehetHaromszog = false
             const valasz = document.getElementById("valasz")
             valasz.innerHTML = ""
             haromszog = [];
@@ -80,12 +81,46 @@
 
             if(haromszog.every(e => isNaN(e)))
             {
-                valasz.innerHTML = "Nem számolható ki adat!"
+                valasz.innerHTML = "Nem számolható ki adat!";
+                return false;
             }
 
             if(haromszog.filter(e => isNaN(e)).length == 5)
             {
-                valasz.innerHTML = "Nem számolható ki adat!"
+                valasz.innerHTML = "Nem számolható ki adat!";
+                return false;
+            }
+
+            //Három oldal
+            if(!isNaN(haromszog[0])&& !isNaN(haromszog[1]) && !isNaN(haromszog[2]))
+            {
+
+                
+
+                if(haromszog[0]+haromszog[1] < haromszog[2] ||
+                haromszog[1]+haromszog[2] < haromszog[0] ||
+                haromszog[0] + haromszog[2] < haromszog[1])
+                {
+                    lehetHaromszog = true;
+                    valasz.innerHTML = "Lehet háromszög!";
+                }
+                /*else if(haromszog[0] == haromszog[1] && haromszog[0]== haromszog[2])
+                {
+                    leheteHaromszog = true;
+                    valasz.innerHTML = "Lehet háromszög!\nAlfa = 60°\nBéta = 60°\nGamma = 60°"
+                }*/
+                else
+                {
+                    lehetHaromszog = false;
+                    valasz.innerHTML = "Nem lehet ilyen háromszög!";
+                    return false;
+                }
+
+                //c2 = a2+b2 - 2ab * cos gamma
+                //cos gamma = a2+b2 - 2ab * cos gamma
+                //c2 = a2+b2 - 2ab * cos gamma
+                let gamma = haromszog
+
             }
             
 
