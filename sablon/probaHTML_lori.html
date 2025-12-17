@@ -62,7 +62,7 @@
             let lehetHaromszog = false
             const valasz = document.getElementById("valasz")
             valasz.innerHTML = ""
-            haromszog = [];
+            haromszog = {};
             const a = document.getElementById("a").value
             const b = document.getElementById("b").value
             const c = document.getElementById("c").value
@@ -70,36 +70,37 @@
             const beta = document.getElementById("beta").value
             const gamma = document.getElementById("gamma").value
 
-            haromszog.push(parseInt(a));
-            haromszog.push(parseInt(b));
-            haromszog.push(parseInt(c));
-            haromszog.push(parseInt(alfa));
-            haromszog.push(parseInt(beta));
-            haromszog.push(parseInt(gamma));
+            haromszog = {a:parseFloat(a),
+                b:parseFloat(b),
+                c:parseFloat(c),
+                alfa:parseFloat(alfa),
+                beta:parseFloat(beta),
+                gamma:parseFloat(gamma)
+            };
             
             console.log(haromszog)
 
-            if(haromszog.every(e => isNaN(e)))
+
+            if(Object.values(haromszog).every(e => isNaN(e)))
             {
                 valasz.innerHTML = "Nem számolható ki adat!";
                 return false;
             }
 
-            if(haromszog.filter(e => isNaN(e)).length == 5)
+            if(Object.values(haromszog).filter(e => isNaN(e)).length == 5)
             {
                 valasz.innerHTML = "Nem számolható ki adat!";
                 return false;
             }
+
+
 
             //Három oldal
-            if(!isNaN(haromszog[0])&& !isNaN(haromszog[1]) && !isNaN(haromszog[2]))
+            if(!isNaN(haromszog.a)&& !isNaN(haromszog.b) && !isNaN(haromszog.c))
             {
-
-                
-
-                if(haromszog[0]+haromszog[1] < haromszog[2] ||
-                haromszog[1]+haromszog[2] < haromszog[0] ||
-                haromszog[0] + haromszog[2] < haromszog[1])
+                if((haromszog.a+haromszog.b > haromszog.c && haromszog.c >= haromszog.b && haromszog.c >= haromszog.a)||
+                (haromszog.b+haromszog.c > haromszog.a && haromszog.a >= haromszog.b && haromszog.a >= haromszog.c) ||
+                (haromszog.a + haromszog.c > haromszog.b && haromszog.b >= haromszog.c && haromszog.b >= haromszog.a))
                 {
                     lehetHaromszog = true;
                     valasz.innerHTML = "Lehet háromszög!";
@@ -116,13 +117,27 @@
                     return false;
                 }
 
-                //c2 = a2+b2 - 2ab * cos gamma
+                if(haromszog.a == haromszog.b && haromszog.b == haromszog.c)
+                {
+                    valasz.innerHTML = "Alfa: 60 fok\nBéta: 60 fok\nGamma: 60 fok";
+                }
+
+                //c2+a2+b2/-2ab  =  cos gamma
                 //cos gamma = a2+b2 - 2ab * cos gamma
                 //c2 = a2+b2 - 2ab * cos gamma
-                let gamma = haromszog
+
+
+                let gamma = Math.acos((haromszog.c**2-haromszog.a**2-haromszog.b**2) / (-2*haromszog.a*haromszog.b));
+                let beta = Math.acos((haromszog.b**2-haromszog.a**2-haromszog.c**2) / (-2*haromszog.a*haromszog.c));
+                let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.b*haromszog.c));
+
+                console.log(alfa,beta,gamma)
+
+
+
 
             }
-            
+
 
             
 
