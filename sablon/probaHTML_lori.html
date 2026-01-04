@@ -81,12 +81,15 @@
             console.log(haromszog)
 
 
+            //Nincs adat megadva
             if(Object.values(haromszog).every(e => isNaN(e)))
             {
                 valasz.innerHTML = "Nem számolható ki adat!";
                 return false;
             }
 
+
+            //Egy adat van megadva
             if(Object.values(haromszog).filter(e => isNaN(e)).length == 5)
             {
                 valasz.innerHTML = "Nem számolható ki adat!";
@@ -119,7 +122,7 @@
 
                 if(haromszog.a == haromszog.b && haromszog.b == haromszog.c)
                 {
-                    valasz.innerHTML = "Alfa: 60 fok\nBéta: 60 fok\nGamma: 60 fok";
+                    valasz.innerHTML = "Alfa: 60°\nBéta: 60°\nGamma: 60°";
                 }
 
                 //c2+a2+b2/-2ab  =  cos gamma
@@ -131,21 +134,71 @@
                 let beta = Math.acos((haromszog.b**2-haromszog.a**2-haromszog.c**2) / (-2*haromszog.a*haromszog.c));
                 let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.b*haromszog.c));
 
-                console.log(alfa,beta,gamma)
+                let alfaFok = Math.floor(alfa*(180/Math.PI))
+                let betaFok = Math.floor(beta*(180/Math.PI))
+                let gammaFok = Math.floor(gamma*(180/Math.PI))
 
-
+                valasz.innerHTML += "\nAlfa: "+alfaFok+"° \nBéta: "+betaFok+"° \nGamma: "+gammaFok+"° ";
 
 
             }
 
+            //Két szög
+            if(!isNaN(haromszog.alfa) && !isNaN(haromszog.beta))
+            {
+                console.log(haromszog.alfa,haromszog.beta)
 
+                console.log(180.0-(haromszog.alfa+haromszog.beta))
+                valasz.innerHTML = `Gamma: ${180.0-(haromszog.alfa+haromszog.beta)}°`;
+                console.log("Helló")
+            }
+            else if(!isNaN(haromszog.beta) && !isNaN(haromszog.gamma))
+            {
+                valasz.innerHTML = `Alfa: ${180.0-(haromszog.beta+haromszog.gamma)}°`;
+            }
+            else if(!isNaN(haromszog.alfa) && !isNaN(haromszog.gamma))
+            {
+                valasz.innerHTML = `Béta: ${180.0-(haromszog.alfa+haromszog.gamma)}°`;
+            }
             
+            //Három oldal egy szög
+            //cos(alfa)= a²-b²-c²/(-2ab)
+            if(lehetHaromszog && !isNaN(haromszog.alfa))
+            {
+                if(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
+                {
+                    valasz.innerHTML = "Lehet háromszög!\n"
 
+                    let gamma = Math.acos((haromszog.c**2-haromszog.a**2-haromszog.b**2) / (-2*haromszog.a*haromszog.b));
+                    let beta = Math.acos((haromszog.b**2-haromszog.a**2-haromszog.c**2) / (-2*haromszog.a*haromszog.c));
+
+                    let betaFok = Math.floor(beta*(180/Math.PI))
+                    let gammaFok = Math.floor(gamma*(180/Math.PI))
+                    
+                    valasz.innerHTML += "Béta: "+betaFok+"°\nGamma: "+gammaFok+"°";
+
+                }
+                else
+                {
+                    let gamma = Math.acos((haromszog.c**2-haromszog.a**2-haromszog.b**2) / (-2*haromszog.a*haromszog.b));
+                    let beta = Math.acos((haromszog.b**2-haromszog.a**2-haromszog.c**2) / (-2*haromszog.a*haromszog.c));
+                    let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.b*haromszog.c));
+
+                    let alfaFok = Math.floor(alfa*(180/Math.PI))
+                    let betaFok = Math.floor(beta*(180/Math.PI))
+                    let gammaFok = Math.floor(gamma*(180/Math.PI))
+                    
+                    console.log(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2),(haromszog.a**2.0-haromszog.b**2.0-haromszog.c**2.0) / (-2.0*(haromszog.a*haromszog.b)))
+                
+                    valasz.innerHTML = "Nem lehet ilyen alfa szöggel háromszög!\n"
+                    valasz.innerHTML += "A háromszög helyes adatai a három oldalból számítva:\nAlfa: "+alfaFok+"°\nBéta: "+betaFok+"°\nGamma: "+gammaFok+"°";
+
+            }
+        
+        }
 
             
         }
-
-        
 
 
     </script>
