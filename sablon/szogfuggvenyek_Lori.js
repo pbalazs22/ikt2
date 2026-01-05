@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Szögfüggvények feladat</title>
-</head>
-<body>
-    <div id="megjelenit"></div>
 
-
-
-    <button onclick="szogfuggvenyekBetolt()">Betölt</button>
-
-    <script>
-
+        let haromszog = [];
 
         function szogfuggvenyekBetolt()
         {
@@ -112,6 +98,10 @@
                     leheteHaromszog = true;
                     valasz.innerHTML = "Lehet háromszög!\nAlfa = 60°\nBéta = 60°\nGamma = 60°"
                 }*/
+                else if(haromszog.a == haromszog.b && haromszog.b == haromszog.c)
+                {
+                    valasz.innerHTML = "Alfa: 60°\nBéta: 60°\nGamma: 60°";
+                }
                 else
                 {
                     lehetHaromszog = false;
@@ -119,10 +109,7 @@
                     return false;
                 }
 
-                if(haromszog.a == haromszog.b && haromszog.b == haromszog.c)
-                {
-                    valasz.innerHTML = "Alfa: 60°\nBéta: 60°\nGamma: 60°";
-                }
+
 
                 //c2+a2+b2/-2ab  =  cos gamma
                 //cos gamma = a2+b2 - 2ab * cos gamma
@@ -231,13 +218,13 @@
         
         }
         //Három oldal három szög
-        if(lehetHaromszog && !isNaN(haromszog.alfa) && !isNaN(haromszog.beta))
+            if(lehetHaromszog && !isNaN(haromszog.alfa) && !isNaN(haromszog.beta))
             {
                 if(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2)&&
                 Math.round(Math.cos(haromszog.beta*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2)&&
                 Math.round(Math.cos(haromszog.gamma*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
                 {
-                    valasz.innerHTML = "Lehet ezekkel a szögekkel háromszög!\n"
+                    valasz.innerHTML = "Minden adat megfelelő!"
 
                 }
                 else
@@ -261,10 +248,3 @@
 
             
         }
-
-
-
-
-    </script>
-</body>
-</html>
