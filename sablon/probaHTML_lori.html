@@ -259,6 +259,64 @@
         
         }
 
+        if(!isNaN(haromszog.a) && !isNaN(haromszog.b) && !isNaN(haromszog.gamma))
+        {
+
+            //c2 = a2+b2 - 2ab * cos gamma
+
+            let c = haromszog.a**2 + haromszog.b**2 - 2*haromszog.a*haromszog.b * Math.cos(haromszog.gamma*(180/Math.PI))
+
+            // a / sin alfa = c / sin gamma
+            // a = c / sin gamma * sin alfa
+            // a * sin gamma = c * sin alfa
+            // a * sin gamma / c = sin alfa
+
+            let alfa = Math.floor(Math.acos((haromszog.a*Math.sin(haromszog.gamma*(180/Math.PI))) / c)*(180/Math.PI));
+
+            // b / sin beta = c / sin gamma
+            // b = c / sin gamma * sin beta
+            // b * sin gamma = c * sin beta
+            // b * sin gamma / c = sin beta
+
+            let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.gamma*(180/Math.PI))) / c)*(180/Math.PI));
+
+
+        }
+
+        if(!isNaN(haromszog.b) && !isNaN(haromszog.c) && !isNaN(haromszog.alfa))
+        {
+
+            //c2 = a2+b2 - 2ab * cos gamma
+
+            let a = haromszog.b**2 + haromszog.c**2 - 2*haromszog.b*haromszog.c * (Math.cos(haromszog.alfa*(Math.PI/180))*(180/Math.PI))
+
+
+            let gamma = Math.floor(Math.acos((haromszog.c*Math.sin(haromszog.alfa*(Math.PI/180))) / a)*(180/Math.PI));
+
+
+            let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.alfa*(Math.PI/180))) / a)*(180/Math.PI));
+
+            valasz.innerHTML = "a oldal: "+a+"\nBéta: "+beta+"°\nGamma: "+gamma+"°";
+        }
+
+        if(!isNaN(haromszog.a) && !isNaN(haromszog.c) && !isNaN(haromszog.beta))
+        {
+
+            //c2 = a2+b2 - 2ab * cos gamma
+
+            let b = (haromszog.a**2 + haromszog.b**2 - 2*haromszog.a*haromszog.b) * Math.cos(haromszog.beta*(180/Math.PI))
+
+
+            let alfa = Math.acos((haromszog.c*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI);
+
+
+            let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI));
+
+            valasz.innerHTML = "b oldal: "+b+"\nAlfa: "+alfa+"°\nBéta: "+beta+"°";
+        }
+
+
+
             
         }
 
