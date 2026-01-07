@@ -1,6 +1,4 @@
 
-        let haromszog = [];
-
         function szogfuggvenyekBetolt()
         {
             const megjelenit = document.getElementById("megjelenit");
