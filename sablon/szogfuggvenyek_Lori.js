@@ -311,7 +311,7 @@ function szogfuggvenyekBetolt()
         }
         else if(lehetHaromszog && !isNaN(haromszog.beta))
             {
-                if(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
+                if(Math.round(Math.cos(haromszog.beta*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
                 {
 
                     let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.a*haromszog.b));
@@ -343,7 +343,7 @@ function szogfuggvenyekBetolt()
 
         else if(lehetHaromszog && !isNaN(haromszog.gamma))
             {
-                if(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
+                if(Math.round(Math.cos(haromszog.gamma*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
                 {
 
                     let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.a*haromszog.b));
