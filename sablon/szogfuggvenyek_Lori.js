@@ -9,8 +9,7 @@ function szogfuggvenyekBetolt()
             
             let kep = document.createElement("img")
             kep.src = "harom.png"
-            kep.style.width = "20%"
-            kep.style.height = "20%"
+            kep.id = "haromszog"
             megjelenit.appendChild(kep)
 
             let sortor = document.createElement("br")
