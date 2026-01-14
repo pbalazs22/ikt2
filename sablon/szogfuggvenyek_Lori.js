@@ -144,7 +144,7 @@ function szogfuggvenyekBetolt()
             }
 
             //Három oldal három szög
-            if(lehetHaromszog && !isNaN(haromszog.alfa) && !isNaN(haromszog.beta))
+            if(lehetHaromszog && !isNaN(haromszog.alfa) && !isNaN(haromszog.beta) && !isNaN(haromszog.gamma))
             {
                 if(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2)&&
                 Math.round(Math.cos(haromszog.beta*(Math.PI/180)),2) == Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2)&&
@@ -200,6 +200,8 @@ function szogfuggvenyekBetolt()
                     console.log(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2),(haromszog.a**2.0-haromszog.b**2.0-haromszog.c**2.0) / (-2.0*(haromszog.a*haromszog.b)))
                 
                     valasz.innerHTML = "Nem lehet ilyen alfa szöggel háromszög!\nA háromszög helyes adatai a három oldalból számítva:\nAlfa: "+alfaFok+"°\nBéta: "+betaFok+"°\nGamma: "+gammaFok+"°";
+
+                    console.log("szia")
 
             }
             console.log("3 oldal 2 szög alfa béta")
@@ -317,7 +319,7 @@ function szogfuggvenyekBetolt()
                     let alfa = Math.acos((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*haromszog.a*haromszog.b));
                     let gamma = Math.acos((haromszog.c**2-haromszog.a**2-haromszog.b**2) / (-2*haromszog.a*haromszog.b));
 
-                    let alfaFok = Math.floor(beta*(180/Math.PI))
+                    let alfaFok = Math.floor(alfa*(180/Math.PI))
                     let gammaFok = Math.floor(gamma*(180/Math.PI))
                     
                     valasz.innerHTML = "Lehet háromszög!\nAlfa: "+alfaFok+"°\nGamma: "+gammaFok+"°";
@@ -382,21 +384,16 @@ function szogfuggvenyekBetolt()
         {
 
             /*//c2 = a2+b2 - 2ab * cos gamma
-
             let c = Math.sqrt(haromszog.a**2 + haromszog.b**2 - 2*haromszog.a*haromszog.b) * Math.cos(haromszog.gamma*(Math.PI/180))
-
             // a / sin alfa = c / sin gamma
             // a = c / sin gamma * sin alfa
             // a * sin gamma = c * sin alfa
             // a * sin gamma / c = sin alfa
-
             let alfa = Math.asin((haromszog.a*Math.sin(haromszog.gamma*(Math.PI/180))) / c)*(180/Math.PI);
-
             // b / sin beta = c / sin gamma
             // b = c / sin gamma * sin beta
             // b * sin gamma = c * sin beta
             // b * sin gamma / c = sin beta
-
             let beta = Math.asin((haromszog.b*Math.sin(haromszog.gamma*(Math.PI/180))) / c)*(180/Math.PI);
             */
             
@@ -413,35 +410,40 @@ function szogfuggvenyekBetolt()
         else if(!isNaN(haromszog.b) && !isNaN(haromszog.c) && !isNaN(haromszog.alfa))
         {
 
-            //c2 = a2+b2 - 2ab * cos gamma
-
+            /*//c2 = a2+b2 - 2ab * cos gamma
             let a = Math.sqrt( haromszog.b**2 + haromszog.c**2 - 2*haromszog.b*haromszog.c * (Math.cos(haromszog.alfa*(Math.PI/180))))
-
-
             let gamma = Math.floor(Math.acos((haromszog.c*Math.sin(haromszog.alfa*(Math.PI/180))) / a)*(180/Math.PI));
-
-
             let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.alfa*(Math.PI/180))) / a)*(180/Math.PI));
+            valasz.innerHTML = "a oldal: "+a+"\nBéta: "+beta+"°\nGamma: "+gamma+"°";*/
 
-            valasz.innerHTML = "a oldal: "+a+"\nBéta: "+beta+"°\nGamma: "+gamma+"°";
+            const a = Math.sqrt(haromszog.b * haromszog.b + haromszog.c * haromszog.c - 2 * haromszog.b * haromszog.c * Math.cos(haromszog.alfa));
+
+            // szögek
+            const beta = Math.asin((b * Math.sin(haromszog.alfa*(Math.PI/180))) / a);
+            const gamma = Math.PI - beta - haromszog.alfa*(Math.PI/180);
+
+            valasz.innerHTML = "a oldal: "+Math.round(a,2)+"\nBéta: "+Math.floor(beta*(180/Math.PI))+"°\nGamma: "+Math.ceil(gamma*(180/Math.PI))+"°";
+            
         }
 
         else if(!isNaN(haromszog.a) && !isNaN(haromszog.c) && !isNaN(haromszog.beta))
         {
 
             //c2 = a2+b2 - 2ab * cos gamma
-
+            /*
             let b = Math.sqrt(haromszog.a**2 + haromszog.c**2 - 2*haromszog.a*haromszog.b) * Math.cos(haromszog.beta*(Math.PI/180))
-
-
             let alfa = Math.acos((haromszog.c*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI);
-
-
             let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI));
-
             valasz.innerHTML = "b oldal: "+b+"\nAlfa: "+alfa+"°\nBéta: "+beta+"°";
+            console.log("huhuu")*/
 
-            console.log("huhuu")
+            const b = Math.sqrt(haromszog.a * haromszog.a + haromszog.c * haromszog.c - 2 * haromszog.a * haromszog.c * Math.cos(haromszog.beta));
+            // szögek
+            const alfa = Math.asin((a * Math.sin(haromszog.beta*(Math.PI/180))) / b);
+            const gamma = Math.PI - alfa - haromszog.beta*(Math.PI/180);
+            valasz.innerHTML = "b oldal: "+Math.round(b,2)+"\nAlfa: "+Math.floor(alfa*(180/Math.PI))+"°\nGamma: "+Math.ceil(gamma*(180/Math.PI))+"°";
+            
+
         }
 
 
