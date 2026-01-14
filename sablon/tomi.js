@@ -34,7 +34,10 @@ function pitagyrosBetolt()
     });
 
     const gomb = document.createElement("button");
-            gomb.onclick = pitagyros;
+            gomb.onclick = function() {
+                valasz.innerHTML = "";
+                pitagyros();
+            };
             gomb.innerHTML = "Kiszámol"
             megjelenit.appendChild(gomb);
 
@@ -69,10 +72,44 @@ function pitagyros()
                 return false;
             }
 
-            //Egy adat van megadva
-            if(Object.values(haromszog).filter(e => isNaN(e)).length == 5)
+            //a oldal
+
+            if(!isNaN(haromszog.b) && !isNaN(haromszog.c))
             {
-                valasz.innerHTML = "Nem számolható ki adat!";
-                return false;
+                haromszog.a = Math.sqrt(haromszog.c*haromszog.c - haromszog.b*haromszog.b);
+                document.getElementById("valasz").innerHTML = "Az 'a' oldal hossza: " + haromszog.a;
+            }   
+
+            //b oldal
+
+            else if(!isNaN(haromszog.a) && !isNaN(haromszog.c))
+            {
+                haromszog.b= Math.sqrt(haromszog.c*haromszog.c - haromszog.a*haromszog.a);
+                document.getElementById("valasz").innerHTML = "A 'b' oldal hossza: " + haromszog.b;
             }
+
+            //c oldal
+
+            else if(!isNaN(haromszog.a) && !isNaN(haromszog.b))
+            {
+                haromszog.c = Math.sqrt(haromszog.a*haromszog.a + haromszog.b*haromszog.b);
+                document.getElementById("valasz").innerHTML = "A 'c' oldal hossza: " + haromszog.c;
+            }
+
+            //Derékszögű háromszög ellenőrzése
+
+            if(!isNaN(haromszog.a) && !isNaN(haromszog.b) && !isNaN(haromszog.c))
+            {
+                if(Math.sqrt(haromszog.a*haromszog.a + haromszog.b*haromszog.b) == haromszog.c)
+                {
+                    document.getElementById("valasz").innerHTML = "Derékszögű háromszög";
+                }
+            }
+            
+            else
+            {
+                document.getElementById("valasz").innerHTML = "Nem derékszögű háromszög!";
+            }
+
+
 }
