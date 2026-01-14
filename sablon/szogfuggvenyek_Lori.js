@@ -398,13 +398,15 @@ function szogfuggvenyekBetolt()
             // b * sin gamma / c = sin beta
 
             let beta = Math.asin((haromszog.b*Math.sin(haromszog.gamma*(Math.PI/180))) / c)*(180/Math.PI);
-
-            valasz.innerHTML = "c oldal: "+c+"\nAlfa: "+alfa+"°\nBéta: "+beta+"°";*/
+            */
+            
             const c = Math.sqrt(haromszog.a * haromszog.a + haromszog.b * haromszog.b - 2 * haromszog.a * haromszog.b * Math.cos(haromszog.gamma));
 
             // szögek
-            const alpha = Math.asin((a * Math.sin(gamma)) / c);
-            const beta = Math.PI - alpha - gamma;
+            const alfa = Math.asin((a * Math.sin(haromszog.gamma*(Math.PI/180))) / c);
+            const beta = Math.PI - alfa - haromszog.gamma*(Math.PI/180);
+
+            valasz.innerHTML = "c oldal: "+Math.round(c,2)+"\nAlfa: "+Math.floor(alfa*(180/Math.PI))+"°\nBéta: "+Math.floor(beta*(180/Math.PI))+"°";
 
         }
 
