@@ -198,12 +198,13 @@ function szogfuggvenyekBetolt()
                     
                     console.log(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2),(haromszog.a**2.0-haromszog.b**2.0-haromszog.c**2.0) / (-2.0*(haromszog.a*haromszog.b)))
                 
-                    valasz.innerHTML = "Nem lehet ilyen alfa szöggel háromszög!\nA háromszög helyes adatai a három oldalból számítva:\nAlfa: "+alfaFok+"°\nBéta: "+betaFok+"°\nGamma: "+gammaFok+"°";
+                    valasz.innerHTML = "Nem lehet ilyen szögekkel háromszög!\nA háromszög helyes adatai a három oldalból számítva:\nAlfa: "+alfaFok+"°\nBéta: "+betaFok+"°\nGamma: "+gammaFok+"°";
 
                     console.log("szia")
 
             }
             console.log("3 oldal 2 szög alfa béta")
+            console.log(Math.round(Math.cos(haromszog.alfa*(Math.PI/180)),2),Math.round((haromszog.a**2-haromszog.b**2-haromszog.c**2) / (-2*(haromszog.a*haromszog.b)),2))
         
         }
 
@@ -372,6 +373,7 @@ function szogfuggvenyekBetolt()
 
             }
             console.log("3 oldal 1 szög gamma")
+            console.log(Math.round(Math.cos(haromszog.gamma*(Math.PI/180)),2))
         }
 
         
@@ -428,13 +430,7 @@ function szogfuggvenyekBetolt()
         else if(!isNaN(haromszog.a) && !isNaN(haromszog.c) && !isNaN(haromszog.beta))
         {
 
-            //c2 = a2+b2 - 2ab * cos gamma
-            /*
-            let b = Math.sqrt(haromszog.a**2 + haromszog.c**2 - 2*haromszog.a*haromszog.b) * Math.cos(haromszog.beta*(Math.PI/180))
-            let alfa = Math.acos((haromszog.c*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI);
-            let beta = Math.floor(Math.acos((haromszog.b*Math.sin(haromszog.beta*(Math.PI/180))) / b)*(180/Math.PI));
-            valasz.innerHTML = "b oldal: "+b+"\nAlfa: "+alfa+"°\nBéta: "+beta+"°";
-            console.log("huhuu")*/
+
 
             const b = Math.sqrt(haromszog.a * haromszog.a + haromszog.c * haromszog.c - 2 * haromszog.a * haromszog.c * Math.cos(haromszog.beta));
             // szögek
