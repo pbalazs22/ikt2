@@ -65,51 +65,54 @@ function pitagyros()
 
             console.log(haromszog)
 
-            //Nincs adat megadva
+            //Nincs adat megadva, vagy csak egy adat van megadva
             if(Object.values(haromszog).every(e => isNaN(e)))
             {
                 valasz.innerHTML = "Nem számolható ki adat!";
                 return false;
             }
+            
 
             //a oldal
 
-            if(!isNaN(haromszog.b) && !isNaN(haromszog.c))
+            if(!isNaN(haromszog.b) && !isNaN(haromszog.c) && isNaN(haromszog.a))
             {
                 haromszog.a = Math.sqrt(haromszog.c*haromszog.c - haromszog.b*haromszog.b);
-                document.getElementById("valasz").innerHTML = "Az 'a' oldal hossza: " + haromszog.a;
+                document.getElementById("valasz").innerHTML = "Az 'a' oldal hossza: " + haromszog.a.toFixed(2) + " cm";
             }   
 
             //b oldal
 
-            else if(!isNaN(haromszog.a) && !isNaN(haromszog.c))
+            else if(!isNaN(haromszog.a) && !isNaN(haromszog.c) && isNaN(haromszog.b))
             {
                 haromszog.b= Math.sqrt(haromszog.c*haromszog.c - haromszog.a*haromszog.a);
-                document.getElementById("valasz").innerHTML = "A 'b' oldal hossza: " + haromszog.b;
+                document.getElementById("valasz").innerHTML = "A 'b' oldal hossza: " + haromszog.b.toFixed(2) + " cm";
             }
 
             //c oldal
 
-            else if(!isNaN(haromszog.a) && !isNaN(haromszog.b))
+            else if(!isNaN(haromszog.a) && !isNaN(haromszog.b) && isNaN(haromszog.c))
             {
                 haromszog.c = Math.sqrt(haromszog.a*haromszog.a + haromszog.b*haromszog.b);
-                document.getElementById("valasz").innerHTML = "A 'c' oldal hossza: " + haromszog.c;
+                document.getElementById("valasz").innerHTML = "A 'c' oldal hossza: " + haromszog.c.toFixed(2) + " cm";
             }
 
+            
             //Derékszögű háromszög ellenőrzése
 
-            if(!isNaN(haromszog.a) && !isNaN(haromszog.b) && !isNaN(haromszog.c))
+            else if(!isNaN(haromszog.a) && !isNaN(haromszog.b) && !isNaN(haromszog.c))
             {
                 if(Math.sqrt(haromszog.a*haromszog.a + haromszog.b*haromszog.b) == haromszog.c)
                 {
                     document.getElementById("valasz").innerHTML = "Derékszögű háromszög";
                 }
+                else
+                {
+                    document.getElementById("valasz").innerHTML = "Nem derékszögű háromszög";
+                }
             }
-            
-            else
-            {
-                document.getElementById("valasz").innerHTML = "Nem derékszögű háromszög!";
-            }
+                
+                
 
 
 }
